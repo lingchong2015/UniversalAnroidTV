@@ -20,7 +20,7 @@ public class MediaItemModel implements Serializable {
     private String mDirector;
     private String mActor;
     private String mContent;
-    private boolean mIsInteresting;
+    private int mInterestingCount;
 
     public MediaItemModel(Builder builder) {
         mID = builder.mID;
@@ -33,7 +33,7 @@ public class MediaItemModel implements Serializable {
         mDirector = builder.mDirector;
         mActor = builder.mActor;
         mContent = builder.mContent;
-        mIsInteresting = builder.mIsInteresting;
+        mInterestingCount = builder.mInterestingCount;
     }
 
     public int getID() {
@@ -116,12 +116,12 @@ public class MediaItemModel implements Serializable {
         mContent = content;
     }
 
-    public boolean isInteresting() {
-        return mIsInteresting;
+    public int getInterestingCount() {
+        return mInterestingCount;
     }
 
-    public void setInteresting(boolean interesting) {
-        mIsInteresting = interesting;
+    public void setInterestingCount(int interestingCount) {
+        mInterestingCount = interestingCount;
     }
 
     public static class Builder {
@@ -136,7 +136,7 @@ public class MediaItemModel implements Serializable {
         private String mDirector;
         private String mActor;
         private String mContent;
-        private boolean mIsInteresting;
+        private int mInterestingCount;
 
         public MediaItemModel build() {
             return new MediaItemModel(this);
@@ -191,8 +191,8 @@ public class MediaItemModel implements Serializable {
             return this;
         }
 
-        public Builder isInterestring(boolean isInteresting) {
-            mIsInteresting = isInteresting;
+        public Builder isInterestring(int interestingCount) {
+            mInterestingCount = interestingCount;
             return this;
         }
     }
