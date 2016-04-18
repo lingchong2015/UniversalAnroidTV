@@ -23,24 +23,25 @@ public class BrowserFragment extends Fragment {
 
     private MyRecyclerView mRecyclerView;//自定义RecyclerView.
     private GalleryAdapter mAdapter;//RecyclerView适配器.
-    private List<Integer> mDatas;//数据源.
+    private List<Integer> mTestDataList;//数据源.
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_browser, container, false);
 
-        initDatas();
+        initTestDataList();
 
         //获取RecyclerView对象, 设置布局管理器, 设置RecyclerView动画.
         mRecyclerView = (MyRecyclerView) view.findViewById(R.id.id_recyclerview_horizontal);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);//将RecyclerView设置为横向布局.
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
         //初始化与设置RecyclerView的适配器.
-        mAdapter = new GalleryAdapter(getActivity(), mDatas);
+        mAdapter = new GalleryAdapter(getActivity(), mTestDataList);
         mRecyclerView.setAdapter(mAdapter);
 
         //设置适配器的监听事件, 这里需要监听单击事件与选中事件.
@@ -48,7 +49,7 @@ public class BrowserFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
 //                mRecyclerView.checkAutoAdjust(position);
-                mRecyclerView.smoothToCenter(position);//当单击Item时, 将该Item置于中间位置.
+//                mRecyclerView.smoothToCenter(position);//当单击Item时, 将该Item置于中间位置.
             }
 
             @Override
@@ -76,13 +77,17 @@ public class BrowserFragment extends Fragment {
             }
         });
 
+        mRecyclerView.requestFocus();
+
         return view;
     }
 
-    private void initDatas() {
-        mDatas = new ArrayList<Integer>(Arrays.asList(R.mipmap.ic_launcher,
-                R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-                R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-                R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
+    public void setFocus() {
+        mRecyclerView.getChildAt(0).requestFocus();
+    }
+
+    private void initTestDataList() {
+        mTestDataList = new ArrayList<>(Arrays.asList(R.mipmap.ic_launcher, R.mipmap.ic_launcher,
+                R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher));
     }
 }

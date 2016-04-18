@@ -6,18 +6,20 @@
               android:orientation="vertical">
 
     <RadioGroup
-        android:id="@+id/main_group"
+        android:id="@+id/main_radio_group"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/main_title_local"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_test"
+            android:layout_width="80dp"
+            android:layout_height="38dp"
             android:background="@drawable/sel_local_service"
-            android:button="@null"/>
+            android:button="@null"
+            android:focusable="true"/>
 
     </RadioGroup>
 
